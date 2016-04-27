@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LookupCache async="false" continueOnError="false" enabled="true" name="Lookup-Cert">
+    <DisplayName>Lookup Cert</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <KeyFragment ref="cert"/>
+    </CacheKey>
+    <CacheResource>jwt-cert</CacheResource>
+    <Scope>Exclusive</Scope>
+    <AssignTo>cert</AssignTo>
+</LookupCache>

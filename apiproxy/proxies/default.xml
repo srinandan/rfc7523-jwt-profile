@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules/>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>Check-Verb-and-Content-Type</Name>
+                <Condition>(request.verb != "POST") OR (request.header.Content-Type != "application/x-www-form-urlencoded")</Condition>
+            </Step>
+            <Step>
+                <Name>Extract-Variables</Name>
+            </Step>
+            <Step>
+                <Name>Lookup-Cert</Name>
+            </Step>
+            <Step>
+                <Name>Get-Credentials</Name>
+                <Condition>lookupcache.Lookup-Cert.cachehit = false</Condition>
+            </Step>
+            <Step>
+                <Name>Get-Certificate</Name>
+                <Condition>lookupcache.Lookup-Cert.cachehit = false</Condition>
+            </Step>
+            <Step>
+                <Name>Populate-Cert</Name>
+                <Condition>lookupcache.Lookup-Cert.cachehit = false</Condition>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <Flows>
+        <Flow name="Authorization Grants">
+            <Description>Using JWTs as Authorization Grants</Description>
+            <Request>
+                <Step>
+                    <Name>Validate-JWT</Name>
+                </Step>
+                <Step>
+                    <Name>Raise-Fault-Invalid-Grant</Name>
+                    <Condition>isValid = false</Condition>
+                </Step>
+                <Step>
+                    <Name>Create-Client-Cred-Req</Name>
+                </Step>
+                <Step>
+                    <Name>Generate-Access-Token</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/") and (request.verb = "POST") and (grant_type = "urn:ietf:params:oauth:grant-type:jwt-bearer")</Condition>
+        </Flow>
+        <Flow name="Client Authentication">
+            <Description>Using JWTs for Client Authentication</Description>
+            <Request>
+                <Step>
+                    <Name>Raise-Fault-Not-Implemented</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/") and (request.verb = "POST") and (grant_type ="authorization_code")</Condition>
+        </Flow>
+        <Flow name="Unknow Request">
+            <Description>Unknow Request</Description>
+            <Request>
+                <Step>
+                    <Name>Raise-Fault-Unknown-Request</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/token.oauth2</BasePath>
+        <Properties/>
+        <VirtualHost>default</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="noroute"/>
+</ProxyEndpoint>

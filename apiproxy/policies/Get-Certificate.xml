@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="Get-Certificate">
+    <DisplayName>Get Certificate</DisplayName>
+    <Properties/>
+    <Request clearPayload="true">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Headers>
+                <Header name="Authorization">{org-creds}</Header>
+                <Header name="Content-Type">text/plain</Header>
+            </Headers>
+            <Verb>GET</Verb>
+        </Set>
+    </Request>
+    <Response>publiccert</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://api.enterprise.apigee.com/v1/organizations/{organization.name}/environments/{environment.name}/keystores/{trustStoreName}/certs/{certName}/export</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

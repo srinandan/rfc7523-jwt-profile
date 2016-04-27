@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="false" enabled="false" name="Generate-Access-Token">
+    <DisplayName>Generate Access Token</DisplayName>
+    <Properties/>
+    <ExternalAuthorization>false</ExternalAuthorization>
+    <Operation>GenerateAccessToken</Operation>
+    <SupportedGrantTypes>
+        <GrantType>client_credentials</GrantType>
+    </SupportedGrantTypes>
+    <GenerateResponse enabled="true"/>
+    <Attributes>
+        <Attribute name="iss" ref="iss" display="true"/>
+        <Attribute name="aud" ref="aud" display="true"/>
+        <Attribute name="sub" ref="sub" display="true"/>
+    </Attributes>
+</OAuthV2>
