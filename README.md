@@ -34,5 +34,22 @@ RFC7523 supports two mechanisms for obtaining an OAuth token.
     J9l-ZhwP[...omitted for brevity...]
     ```
 2. Using JWTs for Client Authentication
-   TODO
+   The following example demonstrates an access token request (part of the 
+   auth code grant flow).
+   ```
+    POST /token.oauth2 HTTP/1.1
+    Host: as.example.com
+    Content-Type: application/x-www-form-urlencoded
+
+    grant_type=authorization_code&
+    code=n0esc3NRze7LTCu7iYzS6a5acc3f0ogp4&
+    client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3A
+    client-assertion-type%3Ajwt-bearer&
+    client_assertion=eyJhbGciOiJSUzI1NiIsImtpZCI6IjIyIn0.
+    eyJpc3Mi[...omitted for brevity...].
+    cC4hiUPo[...omitted for brevity...]
+     ```
       
+### <a name="test"></a>Testing the proxy
+The test folder includes a sample node.js based program that can generate 
+JWS for testing.
