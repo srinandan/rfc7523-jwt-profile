@@ -1,0 +1,11 @@
+{
+  "name": "jwssign",
+  "version": "1.0.0",
+  "description": "Sign a JWT token",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ssridhar@apigee.com",
+  "license": "ISC"
+}

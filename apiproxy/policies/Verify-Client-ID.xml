@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VerifyAPIKey async="false" continueOnError="false" enabled="true" name="Verify-Client-ID">
+    <DisplayName>Verify Client ID</DisplayName>
+    <Properties/>
+    <!-- The RFC mentions that for client authentication, the JWT subject is the client id-->
+    <APIKey ref="sub"/>
+</VerifyAPIKey>

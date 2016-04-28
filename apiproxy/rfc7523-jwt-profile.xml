@@ -5,12 +5,14 @@
     <CreatedBy>ssridhar@apigee.com</CreatedBy>
     <Description>JSON Web Token (JWT) Profile       for OAuth 2.0 Client Authentication and Authorization Grants</Description>
     <DisplayName>rfc7523-jwt-profile</DisplayName>
-    <LastModifiedAt>1461729239896</LastModifiedAt>
+    <LastModifiedAt>1461804013002</LastModifiedAt>
     <LastModifiedBy>ssridhar@apigee.com</LastModifiedBy>
     <Policies>
         <Policy>Check-Verb-and-Content-Type</Policy>
+        <Policy>Create-Client-Auth-Access-Token</Policy>
         <Policy>Create-Client-Cred-Req</Policy>
         <Policy>Extract-Variables</Policy>
+        <Policy>Generate-Access-Token-for-Client-Auth</Policy>
         <Policy>Generate-Access-Token</Policy>
         <Policy>Get-Certificate</Policy>
         <Policy>Get-Credentials</Policy>
@@ -19,15 +21,20 @@
         <Policy>Raise-Fault-Invalid-Grant</Policy>
         <Policy>Raise-Fault-Not-Implemented</Policy>
         <Policy>Raise-Fault-Unknown-Request</Policy>
+        <Policy>Setup-OAuth-Params</Policy>
+        <Policy>Validate-Client-Auth-JWT</Policy>
         <Policy>Validate-JWT</Policy>
+        <Policy>Verify-Client-ID</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
     </ProxyEndpoints>
     <Resources>
+        <Resource>jsc://create-client-auth-access-token.js</Resource>
         <Resource>jsc://jsrsasign-4.8.0-all-min.js</Resource>
         <Resource>jsc://jws-initialization-1.0.js</Resource>
         <Resource>jsc://validate-auth-grants.js</Resource>
+        <Resource>jsc://validate-client-auth.js</Resource>
     </Resources>
     <TargetServers/>
     <TargetEndpoints/>

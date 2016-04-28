@@ -60,8 +60,28 @@
                 <Step>
                     <Name>Raise-Fault-Not-Implemented</Name>
                 </Step>
+                <Step>
+                    <Name>Validate-Client-Auth-JWT</Name>
+                </Step>
+                <Step>
+                    <Name>Raise-Fault-Invalid-Grant</Name>
+                    <Condition>isValid = false</Condition>
+                </Step>
+                <Step>
+                    <Name>Verify-Client-ID</Name>
+                </Step>
+                <Step>
+                    <Name>Setup-OAuth-Params</Name>
+                </Step>
+                <Step>
+                    <Name>Generate-Access-Token-for-Client-Auth</Name>
+                </Step>
+                <Step>
+                    <Name>Create-Client-Auth-Access-Token</Name>
+                </Step>
             </Request>
-            <Response/>
+            <Response>
+            </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/") and (request.verb = "POST") and (grant_type ="authorization_code")</Condition>
         </Flow>
         <Flow name="Unknow Request">

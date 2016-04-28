@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="false" enabled="true" name="Generate-Access-Token-for-Client-Auth">
+    <DisplayName>Generate Access Token for Client Auth</DisplayName>
+    <Properties/>
+    <ExternalAuthorization>false</ExternalAuthorization>
+    <ClientId>sub</ClientId>
+    <Attributes>
+        <Attribute name="iss" ref="iss" display="true"/>
+        <Attribute name="aud" ref="aud" display="true"/>
+        <Attribute name="sub" ref="sub" display="true"/>
+    </Attributes>
+    <Operation>GenerateAccessTokenImplicitGrant</Operation>
+    <GenerateResponse enabled="false"/>
+    <ClientId>sub</ClientId>
+    <ResponseType>response_type</ResponseType>
+    <RedirectUri>redirect_uri</RedirectUri>
+</OAuthV2>

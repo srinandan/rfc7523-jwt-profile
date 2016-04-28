@@ -32,8 +32,28 @@
         context.setVariable("sub", pClaim.sub);
         context.setVariable("aud", pClaim.aud);
         
-        //TODO: exp is mandatory. not being checked.
-        isValid = true;
+        //TODO: nbf not being checked.
+        //TODO: exp can have some leeway. no leeway implemented.
+        
+        //check for token expiry
+        if (pClaim.exp === null) { //exp is a mandatory field in the rfc
+            isValid = false;
+            errDesc = 'expiration not set.';
+        } else {
+            //jwt expiry is set as seconds from epoch 
+            var d = new Date(0);
+            d.setUTCSeconds(pClaim.exp);
+            
+            var currdt = new Date(); //obtain current datetime.
+            
+            //JWT has expired
+            if (d < currdt) {
+                isValid = false;
+                errDesc = 'JWT has expired';
+            } else {
+                isValid = true;
+            }
+        }
     }
     
  } else {
